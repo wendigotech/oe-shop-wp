@@ -1,0 +1,98 @@
+.woocommerce div.product .stock {
+    color: var(--bs-dark);
+}
+
+.woocommerce div.product .out-of-stock {
+    color: var(--bs-danger);
+}
+
+/* Custom CSS for WooCommerce My Account Page */
+/* General WooCommerce container styling */
+.woocommerce {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Navigation container styling */
+.woocommerce-MyAccount-navigation {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Intro text styling */
+.wcmamtx_intro_text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.wcmamtx_intro_text1 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.wcmamtx_intro_text2 a {
+    color: #007cba;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.wcmamtx_intro_text2 a:hover {
+    color: #005a8c;
+}
+
+/* Navigation list styling */
+.wcmamtx_vertical {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.woocommerce-MyAccount-navigation-link {
+    margin-bottom: 10px;
+}
+
+.woocommerce-MyAccount-navigation-link a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.woocommerce-MyAccount-navigation-link a:hover {
+    background-color: #007cba;
+    color: #fff;
+}
+
+.woocommerce-MyAccount-navigation-link.is-active a {
+    background-color: #007cba;
+    color: #fff;
+}
+
+/* Content area styling */
+.woocommerce-MyAccount-content {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.woocommerce-MyAccount-content p {
+    margin-bottom: 15px;
+}
+
+.woocommerce-MyAccount-content a {
+    color: #007cba;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.woocommerce-MyAccount-content a:hover {
+    color: #005a8c;
+}
