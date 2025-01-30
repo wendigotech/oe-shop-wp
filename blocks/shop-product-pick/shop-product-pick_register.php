@@ -35,5 +35,5 @@
 'title' => 'Hand picked products', 'products' => array(), 'show_ratings' => '', 'button_link' => array('post_id' => 0, 'url' => '', 'post_type' => '', 'title' => ''), 'button_label' => 'View More'
             ),
             'dynamic' => true,
-            'version' => '1.0.65'
+            'version' => '1.0.81'
         ) );

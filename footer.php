@@ -45,8 +45,7 @@
                         <p class="mb-3"><?php echo get_theme_mod( 'shop_footer_subscribe_text', __( 'Abonnieren Sie unseren Newsletter und erhalten Sie exklusive Updates direkt in Ihrem Posteingang.', 'oe_shop' ) ); ?></p> 
                         <?php $mailer = new PG_Simple_Form_Mailer(); ?>
                         <?php $mailer->process( array(
-                                'form_id' => 'footer_subscribe_mailer_id',
-                                'send_to_email' => true
+                                'form_id' => 'footer_subscribe_mailer_id'
                         ) ); ?>
                         <?php if( !$mailer->processed || $mailer->error) : ?>
                             <form class="mb-4" id="footer_subscribe_mailer_id" action="<?php echo '#footer_subscribe_mailer_id'; ?>" method="post" onsubmit="event.stopImmediatePropagation();event.stopPropagation();"> 
@@ -72,8 +71,8 @@
                                     </svg> </a>
                             <?php endif; ?> 
                             <?php if ( get_theme_mod( 'shop_footer_social_tw' ) ) : ?>
-                                <a href="<?php echo get_theme_mod( 'shop_footer_social_tw', '#' ); ?>" class="link-light p-1" aria-label="twitter link"> <svg width="20" height="20" version xmlns viewBox="0 0 24 24" xml:space fill="currentColor" stroke> 
-                                        <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"/> 
+                                <a href="<?php echo get_theme_mod( 'shop_footer_social_tw', '#' ); ?>" class="link-light p-1" aria-label="twitter link"> <svg width="17" height="17" version xmlns viewBox="0 0 24 24" xml:space fill="currentColor" stroke="currentColor"> 
+                                        <path d="M14.095 10.316L22.286 1h-1.94L13.23 9.088 7.551 1H1l8.59 12.231L1 23h1.94l7.51-8.543L16.45 23H23l-8.905-12.684zm-2.658 3.022l-.872-1.218L3.64 2.432h2.98l5.59 7.821.869 1.219 7.265 10.166h-2.982l-5.926-8.3z"/> 
                                     </svg> </a>
                             <?php endif; ?> 
                             <?php if ( get_theme_mod( 'shop_footer_social_ig' ) ) : ?>
@@ -100,7 +99,8 @@
                         <div class="col-md pb-2 pt-2"> 
                             <p class="mb-0">&copy; <span><?php echo date( 'Y' ); ?></span> | <span><?php echo get_theme_mod( 'shop_footer_copyright', __( 'Alle Rechte vorbehalten - Firmenname', 'oe_shop' ) ); ?></span></p> 
                         </div>                         
-                        <div class="col-md-auto pb-2 pt-2"><a href="<?php echo get_theme_mod( 'shop_footer_privacy_link', '#' ); ?>" class="link-light text-decoration-none"><?php _e( 'Datenschutzrichtlinie', 'oe_shop' ); ?></a> | <a href="<?php echo get_theme_mod( 'shop_footer_terms_link', '#' ); ?>" class="link-light text-decoration-none"><?php _e( 'Nutzungsbedingungen', 'oe_shop' ); ?></a> 
+                        <div class="col-md-auto pb-2 pt-2">
+                            <a href="<?php echo get_theme_mod( 'shop_footer_privacy_link', '#' ); ?>" class="link-light text-decoration-none"><?php _e( 'Datenschutzrichtlinie', 'oe_shop' ); ?></a> | <a href="<?php echo get_theme_mod( 'shop_footer_terms_link', '#' ); ?>" class="link-light text-decoration-none"><?php _e( 'Nutzungsbedingungen', 'oe_shop' ); ?></a> 
                         </div>                         
                     </div>                     
                 </div>                 
