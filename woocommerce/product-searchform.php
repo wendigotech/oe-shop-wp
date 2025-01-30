@@ -5,7 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <form _lpchecked="1" role="search" action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
     <div class="input-group">
-        <input type="text" class="border-end-0 form-control p-2" placeholder="<?php echo esc_attr__( 'Search products&hellip;', 'woocommerce' ); ?>" aria-label="Enter Keyword" aria-describedby="keyword-input" id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>" value="<?php echo get_search_query(); ?>" name="s"/><span class="bg-white input-group-text p-0" id="keyword-input"><button class="align-items-center btn d-inline-flex h-100" type="submit" id="button-addon1" aria-label="Search" value="<?php echo esc_attr_x( 'Search', 'submit button', 'woocommerce' ); ?>">
+        <input type="text" class="border-end-0 form-control p-2" placeholder="<?php echo esc_attr__( 'Search products&hellip;', 'woocommerce' ); ?>" aria-label="Enter Keyword" aria-describedby="keyword-input" id="woocommerce-product-search-field-<?php echo isset( $index ) ? absint( $index ) : 0; ?>" value="<?php echo get_search_query(); ?>" name="s"/>
+        <span class="bg-white input-group-text p-0" id="keyword-input"><button class="align-items-center btn d-inline-flex h-100" type="submit" id="button-addon1" aria-label="Search" value="<?php echo esc_attr_x( 'Search', 'submit button', 'woocommerce' ); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em">
                     <g>
                         <path fill="none" d="M0 0h24v24H0z"></path>
