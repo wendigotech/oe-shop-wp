@@ -23,5 +23,5 @@
 'title' => 'Join our newsletter and get 15% off', 'subtitle' => 'Sign up for our newsletter to receive updates and exclusive offers'
             ),
             'dynamic' => true,
-            'version' => '1.0.82'
+            'version' => '1.0.99'
         ) );

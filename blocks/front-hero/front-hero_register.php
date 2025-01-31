@@ -39,5 +39,5 @@
 'background' => array('id' => 0, 'url' => 'https://images.unsplash.com/photo-1523381294911-8d3cead13475?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwyMDkyMnwwfDF8c2VhcmNofDI0fHxmYXNoaW9uJTIwc2hvb3R8ZW58MHx8fA&ixlib=rb-1.2.1&q=80&w=1080', 'size' => '', 'svg' => '', 'alt' => null), 'sup_heading' => 'New Collection', 'heading' => 'Best Fabric Meets New Style', 'tagline' => 'Our ability to feel, act and communicate is indistinguishable from magic.', 'button_link' => array('post_id' => 0, 'url' => '#', 'post_type' => '', 'title' => ''), 'button_label' => 'Shop Collection'
             ),
             'dynamic' => true,
-            'version' => '1.0.82'
+            'version' => '1.0.99'
         ) );

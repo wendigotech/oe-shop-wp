@@ -19,5 +19,5 @@
 'heading' => 'Search'
             ),
             'dynamic' => true,
-            'version' => '1.0.82'
+            'version' => '1.0.99'
         ) );
