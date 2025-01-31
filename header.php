@@ -34,8 +34,7 @@
                     <?php if ( has_nav_menu( 'primary' ) ) : ?>
                         <?php
                             PG_Smart_Walker_Nav_Menu::init();
-                            PG_Smart_Walker_Nav_Menu::$options['template'] = '<li class="nav-item">
-                                                        <a class="nav-link px-lg-3 py-lg-4 {CLASSES}" aria-current="page" id="{ID}" {ATTRS}>{TITLE}</a>
+                            PG_Smart_Walker_Nav_Menu::$options['template'] = '<li class="nav-item"><a class="nav-link px-lg-3 py-lg-4 {CLASSES}" aria-current="page" id="{ID}" {ATTRS}>{TITLE}</a>
                                                     </li>';
                             PG_Smart_Walker_Nav_Menu::$options['current_class'] = 'active';
                             wp_nav_menu( array(

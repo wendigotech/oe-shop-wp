@@ -23,5 +23,5 @@
 'parent' => '', 'title' => 'Subcategories'
             ),
             'dynamic' => true,
-            'version' => '1.0.81'
+            'version' => '1.0.82'
         ) );
