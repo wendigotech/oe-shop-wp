@@ -37,5 +37,5 @@
 </svg>', 'alt' => null), 'title' => 'Free Shipping', 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit eiusmod'
             ),
             'dynamic' => true,
-            'version' => '1.0.99'
+            'version' => '1.0.100'
         ) );

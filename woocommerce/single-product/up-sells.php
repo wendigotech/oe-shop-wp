@@ -37,8 +37,7 @@ if ( $upsells ) : ?>
                             <?php foreach( $terms as $term_i => $term ) : ?>
                                 <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="d-inline-block link-secondary mb-2 small text-decoration-none"><?php echo $term->name; ?></a><?php if( $term_i < count( $terms ) - 1 ) echo ', '; ?>
                             <?php endforeach; ?>
-                        <?php endif; ?>
-                        <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="link-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
+                        <?php endif; ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="link-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
                         <?php woocommerce_template_loop_price() ?>
                         <?php woocommerce_template_loop_add_to_cart() ?>
                         <?php woocommerce_show_product_loop_sale_flash() ?>
