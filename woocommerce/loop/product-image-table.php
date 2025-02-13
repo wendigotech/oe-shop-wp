@@ -5,5 +5,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 echo PG_Image::removeSizeAttributes( $product->get_image( 'woocommerce_thumbnail', array(
-    'class' => 'img-fluid rounded'
+    'class' => 'img-fluid'
 ), true ), null);
