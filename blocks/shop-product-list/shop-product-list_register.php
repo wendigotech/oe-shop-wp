@@ -55,5 +55,5 @@
 'title' => 'Popular this Week', 'count' => '', 'orderby' => '', 'direction' => '', 'sale' => '', 'tags' => '', 'cats' => '', 'show_ratings' => '', 'button_link' => array('post_id' => 0, 'url' => '', 'post_type' => '', 'title' => ''), 'button_label' => 'View More'
             ),
             'dynamic' => true,
-            'version' => '1.0.335'
+            'version' => '1.0.336'
         ) );
