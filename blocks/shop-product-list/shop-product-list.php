@@ -70,8 +70,7 @@
                                         <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="d-inline-block link-secondary mb-2 small text-decoration-none"><?php echo $term->name; ?></a>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                            <?php endif; ?>
-                            <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="link-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
+                            <?php endif; ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="link-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
                             <?php woocommerce_template_loop_price() ?>
                             <?php if ( PG_Blocks_v3::getAttribute( $args, 'show_ratings', false ) ) : ?>
                                 <?php woocommerce_template_loop_rating() ?>
@@ -86,7 +85,8 @@
             <p><?php _e( 'Sorry, no posts matched your criteria.', 'oe_shop' ); ?></p>
         <?php endif; ?>
         <?php if ( PG_Blocks_v3::getLinkUrl( $args, 'button_link', false ) ) : ?>
-            <div class="pb-4 pt-4 text-center"><a href="<?php echo (!empty($_GET['context']) && $_GET['context'] === 'edit') ? 'javascript:void()' : PG_Blocks_v3::getLinkUrl( $args, 'button_link' ) ?>" class="btn btn-dark pb-2 ps-4 pe-4 pt-2"><?php echo PG_Blocks_v3::getAttribute( $args, 'button_label' ) ?></a>
+            <div class="pb-4 pt-4 text-center">
+                <a href="<?php echo (!empty($_GET['context']) && $_GET['context'] === 'edit') ? 'javascript:void()' : PG_Blocks_v3::getLinkUrl( $args, 'button_link' ) ?>" class="btn btn-dark pb-2 ps-4 pe-4 pt-2"><?php echo PG_Blocks_v3::getAttribute( $args, 'button_label' ) ?></a>
             </div>
         <?php endif; ?>
     </div>

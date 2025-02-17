@@ -27,22 +27,26 @@
                             <?php if ( woocommerce_product_loop() ) : ?>
                                 <?php rewind_posts(); ?>
                                 <?php if ( wc_get_loop_prop( 'total' ) ) : ?>
-                                    <div class="gy-4 mb-5 mt-auto row row-cols-lg-auto row-cols-sm-2">
+                                    <div class="mb-5 mt-auto row row-cols-lg-auto row-cols-sm-2">
                                         <div class="row row-cols-4 w-auto" id="gridView">
                                             <?php while ( have_posts() ) : the_post(); ?>
                                                 <?php global $product, $post; ?>
                                                 <?php PG_Helper_v2::rememberShownPost(); ?>
-                                                <div <?php wc_product_class('', $product ); ?> id="post-<?php the_ID(); ?>">
-                                                    <div class="position-relative"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?></a>
+                                                <div <?php wc_product_class( 'col-12 col-lg-3 col-md-4 col-sm-6 mb-3' , $product ); ?> id="post-<?php the_ID(); ?>">
+                                                    <div class="position-relative">
+                                                        <?php woocommerce_show_product_loop_sale_flash() ?>
+                                                        <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?><div class="position-relative">
+                                                                <?php echo do_shortcode('[product_attribute_badge name="energy"]'); ?>
+                                                            </div></a>
                                                         <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?>
                                                         <?php if( !empty( $terms ) ) : ?>
                                                             <?php foreach( $terms as $term_i => $term ) : ?>
                                                                 <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="bg-info-subtle d-inline-block mb-2 p-1 rounded small text-decoration-none text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < count( $terms ) - 1 ) echo ', '; ?>
                                                             <?php endforeach; ?>
-                                                        <?php endif; ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
+                                                        <?php endif; ?>
+                                                        <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
                                                         <?php woocommerce_template_loop_price() ?>
                                                         <?php PG_WC_Helper::withTemplateVariant( 'main', function() { woocommerce_template_loop_add_to_cart(); } ); ?>
-                                                        <?php woocommerce_show_product_loop_sale_flash() ?>
                                                     </div>
                                                 </div>
                                             <?php endwhile; ?>
@@ -66,10 +70,10 @@
                                                                 <?php global $product, $post; ?>
                                                                 <?php PG_Helper_v2::rememberShownPost(); ?>
                                                                 <tr <?php wc_product_class( 'border-bottom' , $product ); ?> id="post-<?php the_ID(); ?>">
-                                                                    <td class="text-center p-2"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3 position-relative"> <div class="position-absolute top-0 right-0 translate-x-75 translate-y-25">
+                                                                    <td class="text-center p-2"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3 position-relative"> <div class="position-absolute right-0 top-0 translate-x-75 translate-y-25">
                                                                                 <?php PG_WC_Helper::withTemplateVariant( 'table', function() { woocommerce_show_product_loop_sale_flash(); } ); ?>
                                                                             </div> <div class="bottom-0 end-0 position-absolute translate-x-75 translate-y-25">
-                                                                                <span class="badge bg-success custom-badge product-attribute-badge rounded-pill text-white"><?php _e( 'A++', 'oe_shop' ); ?></span>
+                                                                                <?php echo do_shortcode('[product_attribute_badge name="energy"]'); ?>
                                                                             </div> <?php PG_WC_Helper::withTemplateVariant( 'table', function() { wc_get_template( 'loop/product-image.php' ); } ); ?> </a></td>
                                                                     <td class="text-center p-2"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"> <?php wc_get_template( 'loop/title.php' ) ?> </a> </td>
                                                                     <td class="text-center p-2"> <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?><?php if( !empty( $terms ) ) : ?><?php foreach( $terms as $term_i => $term ) : ?><a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="bg-info-subtle d-inline-block mb-2 p-1 rounded small text-decoration-none text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < count( $terms ) - 1 ) echo ', '; ?><?php endforeach; ?><?php endif; ?> </td>
