@@ -24,7 +24,8 @@ if ( $related_products ) : ?>
                         <div class="col-sm-6">
                             <?php $post_object = get_post( $product->get_id() ); ?>
                             <?php setup_postdata( $GLOBALS['post'] =& $post_object ); ?>
-                            <div class="position-relative"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?></a><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
+                            <div class="position-relative"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?></a>
+                                <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
                                 <?php woocommerce_template_loop_price() ?>
                                 <?php woocommerce_template_loop_add_to_cart() ?>
                                 <?php woocommerce_show_product_loop_sale_flash() ?>
