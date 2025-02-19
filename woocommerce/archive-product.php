@@ -34,17 +34,15 @@
                                                 <?php PG_Helper_v2::rememberShownPost(); ?>
                                                 <div <?php wc_product_class( 'col-12 col-lg-3 col-md-4 col-sm-6 mb-3' , $product ); ?> id="post-<?php the_ID(); ?>">
                                                     <div class="position-relative">
-                                                        <?php woocommerce_show_product_loop_sale_flash() ?>
-                                                        <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?><div class="position-relative">
-                                                                <?php echo do_shortcode('[product_attribute_badge name="energy"]'); ?>
+                                                        <?php woocommerce_show_product_loop_sale_flash() ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?><div class="position-relative">
+                                                                <?php echo do_shortcode('[display_pa_images name="pa_energy,pa_test" class="mein-css-klassenname"]'); ?>
                                                             </div></a>
                                                         <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?>
                                                         <?php if( !empty( $terms ) ) : ?>
                                                             <?php foreach( $terms as $term_i => $term ) : ?>
                                                                 <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="bg-info-subtle d-inline-block mb-2 p-1 rounded small text-decoration-none text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < count( $terms ) - 1 ) echo ', '; ?>
                                                             <?php endforeach; ?>
-                                                        <?php endif; ?>
-                                                        <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
+                                                        <?php endif; ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
                                                         <?php woocommerce_template_loop_price() ?>
                                                         <?php PG_WC_Helper::withTemplateVariant( 'main', function() { woocommerce_template_loop_add_to_cart(); } ); ?>
                                                     </div>
@@ -72,9 +70,7 @@
                                                                 <tr <?php wc_product_class( 'border-bottom' , $product ); ?> id="post-<?php the_ID(); ?>">
                                                                     <td class="text-center p-2"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3 position-relative"> <div class="position-absolute right-0 top-0 translate-x-75 translate-y-25">
                                                                                 <?php PG_WC_Helper::withTemplateVariant( 'table', function() { woocommerce_show_product_loop_sale_flash(); } ); ?>
-                                                                            </div> <div class="bottom-0 end-0 position-absolute translate-x-75 translate-y-25">
-                                                                                <?php echo do_shortcode('[product_attribute_badge name="energy"]'); ?>
-                                                                            </div> <?php PG_WC_Helper::withTemplateVariant( 'table', function() { wc_get_template( 'loop/product-image.php' ); } ); ?> </a></td>
+                                                                            </div>  <?php PG_WC_Helper::withTemplateVariant( 'table', function() { wc_get_template( 'loop/product-image.php' ); } ); ?><?php echo do_shortcode('[display_pa_images name="pa_energy,pa_test" class="mein-css-klassenname"]'); ?> </a></td>
                                                                     <td class="text-center p-2"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"> <?php wc_get_template( 'loop/title.php' ) ?> </a> </td>
                                                                     <td class="text-center p-2"> <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?><?php if( !empty( $terms ) ) : ?><?php foreach( $terms as $term_i => $term ) : ?><a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="bg-info-subtle d-inline-block mb-2 p-1 rounded small text-decoration-none text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < count( $terms ) - 1 ) echo ', '; ?><?php endforeach; ?><?php endif; ?> </td>
                                                                     <td class="text-center p-2"> <?php woocommerce_template_loop_price() ?> </td>

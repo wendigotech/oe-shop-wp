@@ -131,21 +131,21 @@ function starter_shop_widgets_init() {
     /* Pinegrow generated Register Sidebars Begin */
 
     register_sidebar( array(
-        'name' => __( 'Shop sidebar', 'oe_shop' ),
-        'id' => 'shop',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h2 class="widgettitle">',
-        'after_title' => '</h2>'
-    ) );
-
-    register_sidebar( array(
         'name' => __( 'Information', 'oe_shop' ),
         'id' => 'info',
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h3 class="widgettitle">',
         'after_title' => '</h3>'
+    ) );
+
+    register_sidebar( array(
+        'name' => __( 'Shop sidebar', 'oe_shop' ),
+        'id' => 'shop',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h2 class="widgettitle">',
+        'after_title' => '</h2>'
     ) );
 
     /* Pinegrow generated Register Sidebars End */
@@ -398,38 +398,38 @@ if ( ! function_exists( 'starter_shop_enqueue_scripts' ) ) :
 
         /* Pinegrow generated Enqueue Scripts Begin */
 
-    wp_enqueue_script( 'oe_shop-custom', get_template_directory_uri() . '/custom.js', array( 'jquery' ), '1.0.336', true );
+    wp_enqueue_script( 'oe_shop-custom', get_template_directory_uri() . '/custom.js', array( 'jquery' ), '1.0.448', true );
 
     wp_deregister_script( 'oe_shop-popper' );
-    wp_enqueue_script( 'oe_shop-popper', get_template_directory_uri() . '/assets/js/popper.min.js', [], '1.0.336', true);
+    wp_enqueue_script( 'oe_shop-popper', get_template_directory_uri() . '/assets/js/popper.min.js', [], '1.0.448', true);
 
     wp_deregister_script( 'oe_shop-bootstrap' );
-    wp_enqueue_script( 'oe_shop-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', [], '1.0.336', true);
+    wp_enqueue_script( 'oe_shop-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', [], '1.0.448', true);
 
     /* Pinegrow generated Enqueue Scripts End */
 
         /* Pinegrow generated Enqueue Styles Begin */
 
     wp_deregister_style( 'oe_shop-bootstrap' );
-    wp_enqueue_style( 'oe_shop-bootstrap', get_template_directory_uri() . '/bootstrap_theme/bootstrap.css', [], '1.0.336', 'all');
+    wp_enqueue_style( 'oe_shop-bootstrap', get_template_directory_uri() . '/bootstrap_theme/bootstrap.css', [], '1.0.448', 'all');
 
     wp_deregister_style( 'oe_shop-blocks' );
-    wp_enqueue_style( 'oe_shop-blocks', get_template_directory_uri() . '/blocks.css', [], '1.0.336', 'all');
+    wp_enqueue_style( 'oe_shop-blocks', get_template_directory_uri() . '/blocks.css', [], '1.0.448', 'all');
 
     wp_deregister_style( 'oe_shop-style' );
-    wp_enqueue_style( 'oe_shop-style', get_bloginfo('stylesheet_url'), [], '1.0.336', 'all');
+    wp_enqueue_style( 'oe_shop-style', get_bloginfo('stylesheet_url'), [], '1.0.448', 'all');
 
     wp_deregister_style( 'oe_shop-custom' );
-    wp_enqueue_style( 'oe_shop-custom', get_template_directory_uri() . '/custom.css', [], '1.0.336', 'all');
+    wp_enqueue_style( 'oe_shop-custom', get_template_directory_uri() . '/custom.css', [], '1.0.448', 'all');
 
     wp_deregister_style( 'oe_shop-gallery' );
-    wp_enqueue_style( 'oe_shop-gallery', get_template_directory_uri() . '/gallery.css', [], '1.0.336', 'all');
+    wp_enqueue_style( 'oe_shop-gallery', get_template_directory_uri() . '/gallery.css', [], '1.0.448', 'all');
 
     wp_deregister_style( 'oe_shop-button' );
-    wp_enqueue_style( 'oe_shop-button', get_template_directory_uri() . '/button.css', [], '1.0.336', 'all');
+    wp_enqueue_style( 'oe_shop-button', get_template_directory_uri() . '/button.css', [], '1.0.448', 'all');
 
     wp_deregister_style( 'oe_shop-notice' );
-    wp_enqueue_style( 'oe_shop-notice', get_template_directory_uri() . '/notice.css', [], '1.0.336', 'all');
+    wp_enqueue_style( 'oe_shop-notice', get_template_directory_uri() . '/notice.css', [], '1.0.448', 'all');
 
     /* Pinegrow generated Enqueue Styles End */
 
@@ -445,10 +445,10 @@ function pgwp_sanitize_placeholder($input) { return $input; }
 require_once "inc/custom.php";
 if( !class_exists( 'PG_Helper_v2' ) ) { require_once "inc/wp_pg_helpers.php"; }
 if( !class_exists( 'PG_WC_Helper' ) ) { require_once "inc/wc_pg_helpers.php"; }
-if( !class_exists( 'PG_Smart_Walker_Nav_Menu' ) ) { require_once "inc/wp_smart_navwalker.php"; }
 if( !class_exists( 'PG_Blocks_v3' ) ) { require_once "inc/wp_pg_blocks_helpers.php"; }
-if( !class_exists( 'PG_Pagination' ) ) { require_once "inc/wp_pg_pagination.php"; }
 if( !class_exists( 'PG_Simple_Form_Mailer' ) ) { require_once "inc/wp_simple_form_mailer.php"; }
+if( !class_exists( 'PG_Smart_Walker_Nav_Menu' ) ) { require_once "inc/wp_smart_navwalker.php"; }
+if( !class_exists( 'PG_Pagination' ) ) { require_once "inc/wp_pg_pagination.php"; }
 
     /* Pinegrow generated Include Resources End */
 
@@ -532,8 +532,6 @@ function woocommerce_template_loop_product_title() {
 function starter_shop_blocks_init() {
     // Register blocks. Don't edit anything between the following comments.
     /* Pinegrow generated Register Pinegrow Blocks Begin */
-    require_once 'blocks/shop-sidebar-heading/shop-sidebar-heading_register.php';
-    require_once 'blocks/shop-sidebar-search/shop-sidebar-search_register.php';
     require_once 'blocks/front-hero/front-hero_register.php';
     require_once 'blocks/front-small-banner/front-small-banner_register.php';
     require_once 'blocks/front-small-banners/front-small-banners_register.php';
@@ -546,6 +544,8 @@ function starter_shop_blocks_init() {
     require_once 'blocks/shop-feature/shop-feature_register.php';
     require_once 'blocks/shop-features/shop-features_register.php';
     require_once 'blocks/shop-mosaic/shop-mosaic_register.php';
+    require_once 'blocks/shop-sidebar-heading/shop-sidebar-heading_register.php';
+    require_once 'blocks/shop-sidebar-search/shop-sidebar-search_register.php';
 
     /* Pinegrow generated Register Pinegrow Blocks End */
 }

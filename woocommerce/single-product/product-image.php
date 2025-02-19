@@ -16,15 +16,14 @@ array_unshift( $attachment_ids, $product_image_id ? $product_image_id : -1 );
             <?php if( $attachment_id >= 0 ) : ?>
                 <?php $attachment_thumb_src = wp_get_attachment_image_src( $attachment_id, 'woocommerce_gallery_thumbnail' ); ?>
                 <?php $attachment_large_src = wp_get_attachment_image_src( $attachment_id, 'full' ); ?>
-                <div class="woocommerce-product-gallery__image" data-thumb="<?= esc_url( $attachment_thumb_src[0] ); ?>" data-thumb-alt="<?= trim( wp_strip_all_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) ); ?>">
-                    <a href="<?php echo esc_url($attachment_large_src[0]); ?>"><?php echo PG_Image::removeSizeAttributes( (new PG_HTML_Inspector(wc_get_gallery_image_html($attachment_id, $is_main_image)))->getHTML('img', null, null, array(
+                <div class="woocommerce-product-gallery__image" data-thumb="<?= esc_url( $attachment_thumb_src[0] ); ?>" data-thumb-alt="<?= trim( wp_strip_all_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) ); ?>"><a href="<?php echo esc_url($attachment_large_src[0]); ?>"><?php echo PG_Image::removeSizeAttributes( (new PG_HTML_Inspector(wc_get_gallery_image_html($attachment_id, $is_main_image)))->getHTML('img', null, null, array(
                                 'class' => ''. ( $is_main_image ? 'wp-post-image' : '') .' d-block img-fluid w-100'
-                        ) ), null) ?><?php echo do_shortcode('[product_attribute_badge name="energy"]'); ?></a>
+                        ) ), null) ?><span class="badge bottom-0 end-0 fw-bold  position-absolute right-0"><?php echo do_shortcode('[display_pa_images name="pa_energy, pa_test" class="mein-css-klassenname"]'); ?></span></a>
                 </div>
             <?php else : ?>
                 <div class="woocommerce-product-gallery__image woocommerce-product-gallery__image--placeholder">
                     <img src="<?php echo esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ); ?>" class="d-block img-fluid w-100" alt="<?php echo esc_html__( 'Awaiting product image', 'woocommerce' ); ?>" width="600" height="900"/>
-                    <span class="badge bg-success bottom-0 end-0 fw-bold mb-1 me-1 position-absolute right-0"><?php _e( 'A++', 'oe_shop' ); ?></span>
+                    <span class="badge bottom-0 end-0 fw-bold  position-absolute right-0"><?php echo do_shortcode('[display_pa_images name="pa_energy, pa_test" class="mein-css-klassenname"]'); ?></span>
                 </div>
             <?php endif; ?>
             <?php $is_main_image = false; ?>
