@@ -40,14 +40,7 @@
                                                             </div></a>
                                                     </header>
                                                     <article class="flex-grow-1">
-                                                        <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?>
-                                                        <?php if( !empty( $terms ) ) : ?>
-                                                            <?php foreach( $terms as $term_i => $term ) : ?>
-                                                                <?php if( $term_i >= 0 && $term_i <= 2 ) : ?>
-                                                                    <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="bg-info-subtle d-inline-block mb-2 p-1 rounded small text-decoration-none text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < min( 2, count( $terms ) - 1 ) ) echo ', '; ?>
-                                                                <?php endif; ?>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
+                                                        <a href="#"><?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?><?php if( !empty( $terms ) ) : ?><?php foreach( $terms as $term_i => $term ) : ?><?php if( $term_i >= 0 && $term_i <= 2 ) : ?><span class="badge bg-info-subtle fw-bolder mb-2 text-secondary"><?php echo $term->name; ?></span><?php if( $term_i < min( 2, count( $terms ) - 1 ) ) echo ','; ?><?php endif; ?><?php endforeach; ?><?php endif; ?></a>
                                                         <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php PG_WC_Helper::withTemplateVariant( 'product_list', function() { wc_get_template( 'loop/title.php' ); } ); ?></a>
                                                     </article>
                                                     <footer class="mt-auto">

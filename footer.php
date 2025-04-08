@@ -15,7 +15,7 @@
                         <?php if ( has_nav_menu( 'footer_1' ) ) : ?>
                             <?php
                                 PG_Smart_Walker_Nav_Menu::init();
-                                PG_Smart_Walker_Nav_Menu::$options['template'] = '<li class="mb-3 {CLASSES}" id="{ID}"> <a class="link-light text-decoration-none" {ATTRS}>{TITLE}</a> 
+                                PG_Smart_Walker_Nav_Menu::$options['template'] = '<li class="mb-3 {CLASSES}" id="{ID}"> <a class="link-light link-opacity-100-hover link-opacity-75 text-decoration-none" {ATTRS}>{TITLE}</a> 
                                                             </li>';
                                 wp_nav_menu( array(
                                     'container' => '',
@@ -30,7 +30,7 @@
                         <?php if ( has_nav_menu( 'footer_2' ) ) : ?>
                             <?php
                                 PG_Smart_Walker_Nav_Menu::init();
-                                PG_Smart_Walker_Nav_Menu::$options['template'] = '<li class="mb-3 {CLASSES}" id="{ID}"> <a class="link-light text-decoration-none" {ATTRS}>{TITLE}</a> 
+                                PG_Smart_Walker_Nav_Menu::$options['template'] = '<li class="mb-3 {CLASSES}" id="{ID}"> <a class="link-light link-opacity-100-hover link-opacity-75 text-decoration-none" {ATTRS}>{TITLE}</a> 
                                                             </li>';
                                 wp_nav_menu( array(
                                     'container' => '',

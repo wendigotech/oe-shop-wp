@@ -20,7 +20,7 @@ global $product;
         
     	do_action( 'woocommerce_after_add_to_cart_quantity' ); ?>
     <div class="col-md-12 mt-5">
-        <button type="submit" class="btn btn-danger fw-bold pb-2 pe-5 ps-5 pt-2 rounded-0 single_add_to_cart_button" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>">
+        <button class="btn btn-outline-success fw-bold pb-2 pe-5 ps-5 pt-2 rounded-0 single_add_to_cart_button" type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>">
             <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
         </button>
         <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
