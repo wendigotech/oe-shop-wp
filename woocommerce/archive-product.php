@@ -26,68 +26,74 @@
                             </div>
                             <?php if ( woocommerce_product_loop() ) : ?>
                                 <?php rewind_posts(); ?>
-                                <?php if ( wc_get_loop_prop( 'total' ) ) : ?>
-                                    <div class="mb-5 mt-auto row row-cols-lg-auto row-cols-sm-2">
+                                <div class="mb-5 mt-auto row row-cols-lg-auto row-cols-sm-2">
+                                    <?php if ( wc_get_loop_prop( 'total' ) ) : ?>
                                         <div class="row row-cols-4 w-auto" id="gridView">
                                             <?php while ( have_posts() ) : the_post(); ?>
                                                 <?php global $product, $post; ?>
                                                 <?php PG_Helper_v2::rememberShownPost(); ?>
-                                                <div <?php wc_product_class( 'col-12 col-lg-3 col-md-4 col-sm-6 mb-3' , $product ); ?> id="post-<?php the_ID(); ?>">
-                                                    <div class="position-relative">
+                                                <section <?php wc_product_class( 'align-content-stretch align-items-stretch d-flex flex-column mb-4 text-break' , $product ); ?> id="post-<?php the_ID(); ?>">
+                                                    <header>
                                                         <?php woocommerce_show_product_loop_sale_flash() ?>
                                                         <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?><div class="position-relative">
-                                                                <?php echo do_shortcode('[display_pa_images name="pa_energy_3-plus-d,pa_energy_a-g,pa_energy_a-plus-f" class="your-class"]'); ?>
+                                                                <span class="badge bottom-0 end-0 fw-bold  position-absolute right-0 w-50"><?php echo do_shortcode('[display_pa_images name="pa_energy_3-plus-d,pa_energy_a-g,pa_energy_a-plus-f" class="your-class"]'); ?></span> 
                                                             </div></a>
+                                                    </header>
+                                                    <article class="flex-grow-1">
                                                         <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?>
                                                         <?php if( !empty( $terms ) ) : ?>
                                                             <?php foreach( $terms as $term_i => $term ) : ?>
-                                                                <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="bg-info-subtle d-inline-block mb-2 p-1 rounded small text-decoration-none text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < count( $terms ) - 1 ) echo ', '; ?>
+                                                                <?php if( $term_i >= 0 && $term_i <= 2 ) : ?>
+                                                                    <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="bg-info-subtle d-inline-block mb-2 p-1 rounded small text-decoration-none text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < min( 2, count( $terms ) - 1 ) ) echo ', '; ?>
+                                                                <?php endif; ?>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
-                                                        <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php wc_get_template( 'loop/title.php' ) ?></a>
+                                                        <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php PG_WC_Helper::withTemplateVariant( 'product_list', function() { wc_get_template( 'loop/title.php' ); } ); ?></a>
+                                                    </article>
+                                                    <footer class="mt-auto">
                                                         <?php woocommerce_template_loop_price() ?>
                                                         <?php PG_WC_Helper::withTemplateVariant( 'main', function() { woocommerce_template_loop_add_to_cart(); } ); ?>
-                                                    </div>
-                                                </div>
+                                                    </footer>
+                                                </section>
                                             <?php endwhile; ?>
                                         </div>
-                                        <div class="col-auto col-md-12 col-sm-12 d-none table-responsive-md" id="tableView">
-                                            <?php if ( woocommerce_product_loop() ) : ?>
-                                                <?php rewind_posts(); ?>
-                                                <?php if ( wc_get_loop_prop( 'total' ) ) : ?>
-                                                    <table id="tableView" class="mw-100 table table-bordered table-sm table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col" class="text-center py-2"><?php _e( 'Produktbild', 'oe_shop' ); ?></th>
-                                                                <th scope="col" class="text-center py-2"><?php _e( 'Produktbeschreibung', 'oe_shop' ); ?></th>
-                                                                <th scope="col" class="text-center py-2"><?php _e( 'Kategorie', 'oe_shop' ); ?></th>
-                                                                <th scope="col" class="text-center py-2"><?php _e( 'Preis', 'oe_shop' ); ?></th>
-                                                                <th scope="col" class="text-center py-2"><?php _e( 'Aktion', 'oe_shop' ); ?></th>
+                                    <?php endif; ?>
+                                    <div class="col-auto col-md-12 col-sm-12 d-none table-responsive-md" id="tableView">
+                                        <?php if ( woocommerce_product_loop() ) : ?>
+                                            <?php rewind_posts(); ?>
+                                            <?php if ( wc_get_loop_prop( 'total' ) ) : ?>
+                                                <table id="tableView" class="mw-100 table table-bordered table-sm table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" class="text-center py-2"><?php _e( 'Produktbild', 'oe_shop' ); ?></th>
+                                                            <th scope="col" class="text-center py-2"><?php _e( 'Produktbeschreibung', 'oe_shop' ); ?></th>
+                                                            <th scope="col" class="text-center py-2"><?php _e( 'Kategorie', 'oe_shop' ); ?></th>
+                                                            <th scope="col" class="text-center py-2"><?php _e( 'Preis', 'oe_shop' ); ?></th>
+                                                            <th scope="col" class="text-center py-2"><?php _e( 'Aktion', 'oe_shop' ); ?></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php while ( have_posts() ) : the_post(); ?>
+                                                            <?php global $product, $post; ?>
+                                                            <?php PG_Helper_v2::rememberShownPost(); ?>
+                                                            <tr <?php wc_product_class( 'border-bottom' , $product ); ?> id="post-<?php the_ID(); ?>">
+                                                                <td class="text-center p-2"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3 position-relative"> <div class="position-absolute right-0 top-0 translate-x-75 translate-y-25">
+                                                                            <?php PG_WC_Helper::withTemplateVariant( 'table', function() { woocommerce_show_product_loop_sale_flash(); } ); ?>
+                                                                        </div> <?php PG_WC_Helper::withTemplateVariant( 'table', function() { wc_get_template( 'loop/product-image.php' ); } ); ?><span class="badge bottom-0 end-0 fw-bold  position-absolute right-0"><?php echo do_shortcode('[display_pa_images name="pa_energy_3-plus-d,pa_energy_a-g,pa_energy_a-plus-f" class="your-class"]'); ?></span> </a></td>
+                                                                <td class="text-center p-2"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"> <?php wc_get_template( 'loop/title.php' ) ?> </a> </td>
+                                                                <td class="text-center p-2"> <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?><?php if( !empty( $terms ) ) : ?><?php foreach( $terms as $term_i => $term ) : ?><a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="bg-info-subtle d-inline-block mb-2 p-1 rounded small text-decoration-none text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < count( $terms ) - 1 ) echo ', '; ?><?php endforeach; ?><?php endif; ?> </td>
+                                                                <td class="text-center p-2"> <?php woocommerce_template_loop_price() ?> </td>
+                                                                <td class="text-center p-2"> <?php PG_WC_Helper::withTemplateVariant( 'table', function() { woocommerce_template_loop_add_to_cart(); } ); ?> </td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php while ( have_posts() ) : the_post(); ?>
-                                                                <?php global $product, $post; ?>
-                                                                <?php PG_Helper_v2::rememberShownPost(); ?>
-                                                                <tr <?php wc_product_class( 'border-bottom' , $product ); ?> id="post-<?php the_ID(); ?>">
-                                                                    <td class="text-center p-2"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3 position-relative"> <div class="position-absolute right-0 top-0 translate-x-75 translate-y-25">
-                                                                                <?php PG_WC_Helper::withTemplateVariant( 'table', function() { woocommerce_show_product_loop_sale_flash(); } ); ?>
-                                                                            </div> <?php PG_WC_Helper::withTemplateVariant( 'table', function() { wc_get_template( 'loop/product-image.php' ); } ); ?><?php echo do_shortcode('[display_pa_images name="pa_energy_3-plus-d,pa_energy_a-g,pa_energy_a-plus-f" class="your-class"]'); ?> </a></td>
-                                                                    <td class="text-center p-2"> <a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"> <?php wc_get_template( 'loop/title.php' ) ?> </a> </td>
-                                                                    <td class="text-center p-2"> <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?><?php if( !empty( $terms ) ) : ?><?php foreach( $terms as $term_i => $term ) : ?><a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>" class="bg-info-subtle d-inline-block mb-2 p-1 rounded small text-decoration-none text-secondary"><?php echo $term->name; ?></a><?php if( $term_i < count( $terms ) - 1 ) echo ', '; ?><?php endforeach; ?><?php endif; ?> </td>
-                                                                    <td class="text-center p-2"> <?php woocommerce_template_loop_price() ?> </td>
-                                                                    <td class="text-center p-2"> <?php PG_WC_Helper::withTemplateVariant( 'table', function() { woocommerce_template_loop_add_to_cart(); } ); ?> </td>
-                                                                </tr>
-                                                            <?php endwhile; ?>
-                                                        </tbody>
-                                                    </table>
-                                                <?php endif; ?>
-                                            <?php else : ?>
-                                                <?php do_action( 'woocommerce_no_products_found' ); ?>
+                                                        <?php endwhile; ?>
+                                                    </tbody>
+                                                </table>
                                             <?php endif; ?>
-                                        </div>                                         
-                                    </div>
-                                <?php endif; ?>
+                                        <?php else : ?>
+                                            <?php do_action( 'woocommerce_no_products_found' ); ?>
+                                        <?php endif; ?>
+                                    </div>                                     
+                                </div>
                             <?php else : ?>
                                 <?php do_action( 'woocommerce_no_products_found' ); ?>
                             <?php endif; ?>
