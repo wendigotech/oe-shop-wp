@@ -398,38 +398,38 @@ if ( ! function_exists( 'starter_shop_enqueue_scripts' ) ) :
 
         /* Pinegrow generated Enqueue Scripts Begin */
 
-    wp_enqueue_script( 'oe_shop-custom', get_template_directory_uri() . '/custom.js', array( 'jquery' ), '1.0.463', true );
+    wp_enqueue_script( 'oe_shop-custom', get_template_directory_uri() . '/custom.js', array( 'jquery' ), '1.0.464', true );
 
     wp_deregister_script( 'oe_shop-popper' );
-    wp_enqueue_script( 'oe_shop-popper', get_template_directory_uri() . '/assets/js/popper.min.js', [], '1.0.463', true);
+    wp_enqueue_script( 'oe_shop-popper', get_template_directory_uri() . '/assets/js/popper.min.js', [], '1.0.464', true);
 
     wp_deregister_script( 'oe_shop-bootstrap' );
-    wp_enqueue_script( 'oe_shop-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', [], '1.0.463', true);
+    wp_enqueue_script( 'oe_shop-bootstrap', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', [], '1.0.464', true);
 
     /* Pinegrow generated Enqueue Scripts End */
 
         /* Pinegrow generated Enqueue Styles Begin */
 
     wp_deregister_style( 'oe_shop-bootstrap' );
-    wp_enqueue_style( 'oe_shop-bootstrap', get_template_directory_uri() . '/bootstrap_theme/bootstrap.css', [], '1.0.463', 'all');
+    wp_enqueue_style( 'oe_shop-bootstrap', get_template_directory_uri() . '/bootstrap_theme/bootstrap.css', [], '1.0.464', 'all');
 
     wp_deregister_style( 'oe_shop-blocks' );
-    wp_enqueue_style( 'oe_shop-blocks', get_template_directory_uri() . '/blocks.css', [], '1.0.463', 'all');
+    wp_enqueue_style( 'oe_shop-blocks', get_template_directory_uri() . '/blocks.css', [], '1.0.464', 'all');
 
     wp_deregister_style( 'oe_shop-style' );
-    wp_enqueue_style( 'oe_shop-style', get_bloginfo('stylesheet_url'), [], '1.0.463', 'all');
+    wp_enqueue_style( 'oe_shop-style', get_bloginfo('stylesheet_url'), [], '1.0.464', 'all');
 
     wp_deregister_style( 'oe_shop-custom' );
-    wp_enqueue_style( 'oe_shop-custom', get_template_directory_uri() . '/custom.css', [], '1.0.463', 'all');
+    wp_enqueue_style( 'oe_shop-custom', get_template_directory_uri() . '/custom.css', [], '1.0.464', 'all');
 
     wp_deregister_style( 'oe_shop-gallery' );
-    wp_enqueue_style( 'oe_shop-gallery', get_template_directory_uri() . '/gallery.css', [], '1.0.463', 'all');
+    wp_enqueue_style( 'oe_shop-gallery', get_template_directory_uri() . '/gallery.css', [], '1.0.464', 'all');
 
     wp_deregister_style( 'oe_shop-button' );
-    wp_enqueue_style( 'oe_shop-button', get_template_directory_uri() . '/button.css', [], '1.0.463', 'all');
+    wp_enqueue_style( 'oe_shop-button', get_template_directory_uri() . '/button.css', [], '1.0.464', 'all');
 
     wp_deregister_style( 'oe_shop-notice' );
-    wp_enqueue_style( 'oe_shop-notice', get_template_directory_uri() . '/notice.css', [], '1.0.463', 'all');
+    wp_enqueue_style( 'oe_shop-notice', get_template_directory_uri() . '/notice.css', [], '1.0.464', 'all');
 
     /* Pinegrow generated Enqueue Styles End */
 
