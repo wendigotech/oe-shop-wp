@@ -28,7 +28,7 @@
                                 <?php rewind_posts(); ?>
                                 <div class="mb-5 mt-auto row row-cols-lg-auto row-cols-sm-2">
                                     <?php if ( wc_get_loop_prop( 'total' ) ) : ?>
-                                        <div class="me-auto ms-0 row row-cols-auto row-cols-lg-4 row-cols-md-2 w-auto" id="gridView">
+                                        <div class="me-auto ms-0 row row-cols-auto row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xl-5 row-cols-xxl-6 w-auto" id="gridView">
                                             <?php while ( have_posts() ) : the_post(); ?>
                                                 <?php global $product, $post; ?>
                                                 <?php PG_Helper_v2::rememberShownPost(); ?>
@@ -37,7 +37,15 @@
                                                         <?php woocommerce_show_product_loop_sale_flash() ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="d-block mb-3"><?php wc_get_template( 'loop/product-image.php' ) ?><div class="position-relative"><span class="badge bottom-0 end-0 fw-bold  position-absolute right-0 w-50"><?php echo do_shortcode('[display_pa_images name="pa_energy_3-plus-d,pa_energy_a-g,pa_energy_a-plus-f" class="your-class"]'); ?></span> 
                                                             </div></a>
                                                     </header>
-                                                    <article class="flex-grow-1"><a href="#"><?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?><?php if( !empty( $terms ) ) : ?><?php foreach( $terms as $term_i => $term ) : ?><?php if( $term_i >= 0 && $term_i <= 2 ) : ?><span class="badge bg-secondary fw-semibold mb-2 text-white"><?php echo $term->name; ?></span><?php if( $term_i < min( 2, count( $terms ) - 1 ) ) echo ','; ?><?php endif; ?><?php endforeach; ?><?php endif; ?></a><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php PG_WC_Helper::withTemplateVariant( 'product_list', function() { wc_get_template( 'loop/title.php' ); } ); ?></a>
+                                                    <article class="flex-grow-1">
+                                                        <?php $terms = get_the_terms( get_the_ID(), 'product_cat' ) ?>
+                                                        <?php if( !empty( $terms ) ) : ?>
+                                                            <?php foreach( $terms as $term_i => $term ) : ?>
+                                                                <?php if( $term_i >= 0 && $term_i <= 2 ) : ?>
+                                                                    <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ) ?>"><span class="badge bg-secondary fw-bolder mb-2 text-white"><?php echo $term->name; ?></span></a><?php if( $term_i < min( 2, count( $terms ) - 1 ) ) echo ','; ?>
+                                                                <?php endif; ?>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="text-dark text-decoration-none"><?php PG_WC_Helper::withTemplateVariant( 'product_list', function() { wc_get_template( 'loop/title.php' ); } ); ?></a>
                                                     </article>
                                                     <footer class="mt-auto">
                                                         <?php woocommerce_template_loop_price() ?>

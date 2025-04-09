@@ -31,5 +31,5 @@
 'image' => array('id' => 0, 'url' => 'https://images.unsplash.com/photo-1467043237213-65f2da53396f?fp-z=3.75&fp-y=.5&fp-x=0&crop=focalpoint&fit=crop&w=280&h=200', 'size' => '', 'svg' => '', 'alt' => 'Product image'), 'title' => 'Mens Summer Collection', 'link_label' => 'View Collection', 'link_url' => array('post_id' => 0, 'url' => '#', 'post_type' => '', 'title' => '')
             ),
             'dynamic' => true,
-            'version' => '1.0.464'
+            'version' => '1.0.467'
         ) );
