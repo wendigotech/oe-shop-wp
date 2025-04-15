@@ -3,4 +3,4 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 ?>
-<h6 class="text-ellipsis"><?php the_title(); ?></h6>
+<h3 class="h6 text-ellipsis"><?php the_title(); ?></h3>
