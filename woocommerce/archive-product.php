@@ -93,28 +93,6 @@
                                         <?php $slider_query_item_number++; ?>
                                     <?php endwhile; ?>
                                     <?php wp_reset_postdata(); ?>
-                                    <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-6 text-center text-md-start">
-                                                <h2 class="fw-bold mb-3 fs-3 fs-md-2" id="carousel-title-2"><?php _e( 'Featured Product 2', 'oe_shop' ); ?></h2>
-                                                <p class="mb-4 fs-6 fs-md-5" id="carousel-desc-2"><?php _e( 'Upgrade your experience with our new arrival. Limited stock available!', 'oe_shop' ); ?></p><a href="#" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-2" aria-label="Shop Featured Product 2"><?php _e( 'Shop Now', 'oe_shop' ); ?></a>
-                                            </div>
-                                            <div class="col-md-6 d-flex justify-content-center">
-                                                <img src="https://images.unsplash.com/photo-1553456558-aff63285bdd1?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDl8fHByb2R1Y3R8ZW58MHx8fHwxNzQ5MDY2NDAxfDA&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop" class="img-fluid" alt="Featured Product 2: Upgrade your experience with our new arrival. Limited stock available!" style="max-height: 320px;" aria-labelledby="carousel-title-2">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3">
-                                        <div class="row align-items-center">
-                                            <div class="col-md-6 text-center text-md-start">
-                                                <h2 class="fw-bold mb-3 fs-3 fs-md-2" id="carousel-title-3"><?php _e( 'Featured Product 3', 'oe_shop' ); ?></h2>
-                                                <p class="mb-4 fs-6 fs-md-5" id="carousel-desc-3"><?php _e( 'Don’t miss out on this exclusive offer. Shop the best deals now!', 'oe_shop' ); ?></p><a href="#" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-3" aria-label="Shop Featured Product 3"><?php _e( 'Zum Produkt', 'oe_shop' ); ?></a>
-                                            </div>
-                                            <div class="col-md-6 d-flex justify-content-center">
-                                                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDE4fHxwcm9kdWN0fGVufDB8fHx8MTc0OTA2NjQwMXww&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop" class="img-fluid" alt="Featured Product 3: Don’t miss out on this exclusive offer. Shop the best deals now!" style="max-height: 320px;" aria-labelledby="carousel-title-3">
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             <?php else : ?>
                                 <p><?php _e( 'Sorry, no posts matched your criteria.', 'oe_shop' ); ?></p>
