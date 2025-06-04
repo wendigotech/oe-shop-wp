@@ -1,5 +1,137 @@
 <?php get_header(); ?>
 
+            <section>
+                <div class="container py-5">
+                    <div class="d-flex justify-content-start mb-2">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="carouselPauseBtn" aria-pressed="false" aria-label="Pause carousel" tabindex="0" aria-controls="productSlider" onclick="var carousel = bootstrap.Carousel.getInstance(document.getElementById('productSlider')); if (this.ariaPressed == 'false') { carousel.pause(); this.ariaPressed = 'true'; this.innerHTML = 'Slider abspielen'; } else { carousel.cycle(); this.ariaPressed = 'false'; this.innerHTML = 'Slider pausieren'; }" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
+                            <?php _e( 'Slider pausieren', 'oe_shop' ); ?>
+                        </button>
+                    </div>
+                    <div id="productSlider" class="carousel slide" data-bs-ride="carousel" aria-label="Featured Products" tabindex="0" aria-live="polite" aria-atomic="true" data-bs-interval="5000" data-bs-pause="hover" data-bs-touch="true" data-bs-keyboard="true">
+                        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var carousel = document.getElementById('productSlider');
+          var pauseBtn = document.getElementById('carouselPauseBtn');
+          var isPaused = false;
+
+          pauseBtn.addEventListener('click', function() {
+            var carouselInstance = bootstrap.Carousel.getOrCreateInstance(carousel);
+            if (!isPaused) {
+              carouselInstance.pause();
+              pauseBtn.setAttribute('aria-pressed', 'true');
+              pauseBtn.innerText = 'Slider abspielen';
+              pauseBtn.setAttribute('aria-label', 'Karussell-Autorotation abspielen');
+              isPaused = true;
+            } else {
+              carouselInstance.cycle();
+              pauseBtn.setAttribute('aria-pressed', 'false');
+              pauseBtn.innerText = 'Slider pausieren';
+              pauseBtn.setAttribute('aria-label', 'Karussell-Autorotation pausieren');
+              isPaused = false;
+            }
+          });
+
+          // Ensure the slider is cycling on load
+          var carouselInstance = bootstrap.Carousel.getOrCreateInstance(carousel);
+          carouselInstance.cycle();
+          isPaused = false;
+          pauseBtn.setAttribute('aria-pressed', 'false');
+          pauseBtn.innerText = 'Slider pausieren';
+          pauseBtn.setAttribute('aria-label', 'Karussell-Autorotation pausieren');
+        });
+      </script>
+                        <div class="position-relative">
+                            <?php
+                                $product_query_args = array(
+                                    'post_type' => 'product',
+                                    'nopaging' => true,
+                                    'order' => 'ASC',
+                                    'orderby' => 'date',
+                                    'tax_query' => array_filter( array(PG_Helper_v2::getTaxonomyQuery( 'product_tag', 'beste' )) )
+                                )
+                            ?>
+                            <?php
+                                $product_query_args['meta_query'] = WC()->query->get_meta_query(); 
+                                if( isset( $product_query_args[ 'orderby' ] ) ) {
+                                    switch( $product_query_args[ 'orderby' ] ) {
+                                        case 'price':
+                                            $product_query_args[ 'orderby' ] = 'meta_value_num';
+                                            $product_query_args[ 'meta_key' ] = '_price';
+                                            break;
+                                        case 'rating':
+                                            $product_query_args[ 'orderby' ] = 'meta_value_num';
+                                            $product_query_args[ 'meta_key' ] = '_wc_average_rating';
+                                            break;
+                                        case 'total_sales':
+                                            $product_query_args[ 'orderby' ] = 'meta_value_num';
+                                            $product_query_args[ 'meta_key' ] = 'total_sales';
+                                            break;
+                                        case 'review_count':
+                                            $product_query_args[ 'orderby' ] = 'meta_value_num';
+                                            $product_query_args[ 'meta_key' ] = '_wc_review_count';
+                                            break;
+                                    }
+                            }?>
+                            <?php $product_query = new WP_Query( $product_query_args ); ?>
+                            <?php if ( $product_query->have_posts() ) : ?>
+                                <div class="carousel-inner">
+                                    <?php $product_query_item_number = 0; ?>
+                                    <?php while ( $product_query->have_posts() ) : $product_query->the_post(); ?>
+                                        <?php if( $product_query_item_number == 5 ) : ?>
+                                            <?php global $product, $post; ?>
+                                            <?php PG_Helper_v2::rememberShownPost(); ?>
+                                            <div class="carousel-item<?php if( $product_query_item_number == 0) echo ' active'; ?> <?php echo join( ' ', wc_get_product_class( '', $product ) ) ?>" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3" aria-current="true" id="post-<?php the_ID(); ?>">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-6 text-center text-md-start">
+                                                        <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/title.php' ); } ); ?>
+                                                        <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/short-description.php' ); } ); ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-1" aria-label="Shop Featured Product 1"><?php _e( 'Shop Now', 'oe_shop' ); ?></a>
+                                                    </div>
+                                                    <div class="col-md-6 d-flex justify-content-center">
+                                                        <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/product-image.php' ); } ); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php $product_query_item_number++; ?>
+                                    <?php endwhile; ?>
+                                    <?php wp_reset_postdata(); ?>
+                                    <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6 text-center text-md-start">
+                                                <h2 class="fw-bold mb-3 fs-3 fs-md-2" id="carousel-title-2"><?php _e( 'Featured Product 2', 'oe_shop' ); ?></h2>
+                                                <p class="mb-4 fs-6 fs-md-5" id="carousel-desc-2"><?php _e( 'Upgrade your experience with our new arrival. Limited stock available!', 'oe_shop' ); ?></p><a href="#" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-2" aria-label="Shop Featured Product 2"><?php _e( 'Shop Now', 'oe_shop' ); ?></a>
+                                            </div>
+                                            <div class="col-md-6 d-flex justify-content-center">
+                                                <img src="https://images.unsplash.com/photo-1553456558-aff63285bdd1?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDl8fHByb2R1Y3R8ZW58MHx8fHwxNzQ5MDY2NDAxfDA&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop" class="img-fluid rounded shadow" alt="Featured Product 2: Upgrade your experience with our new arrival. Limited stock available!" style="max-height: 320px;" aria-labelledby="carousel-title-2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 3 of 3">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-6 text-center text-md-start">
+                                                <h2 class="fw-bold mb-3 fs-3 fs-md-2" id="carousel-title-3"><?php _e( 'Featured Product 3', 'oe_shop' ); ?></h2>
+                                                <p class="mb-4 fs-6 fs-md-5" id="carousel-desc-3"><?php _e( 'Don’t miss out on this exclusive offer. Shop the best deals now!', 'oe_shop' ); ?></p><a href="#" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-3" aria-label="Shop Featured Product 3"><?php _e( 'Shop Now', 'oe_shop' ); ?></a>
+                                            </div>
+                                            <div class="col-md-6 d-flex justify-content-center">
+                                                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDE4fHxwcm9kdWN0fGVufDB8fHx8MTc0OTA2NjQwMXww&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop" class="img-fluid rounded shadow" alt="Featured Product 3: Don’t miss out on this exclusive offer. Shop the best deals now!" style="max-height: 320px;" aria-labelledby="carousel-title-3">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php else : ?>
+                                <p><?php _e( 'Sorry, no posts matched your criteria.', 'oe_shop' ); ?></p>
+                            <?php endif; ?>
+                            <!-- Desktop controls -->
+                            <!-- Mobile controls below carousel for accessibility -->
+                            <ol class="carousel-indicators justify-content-center mb-n4" aria-label="Slide indicators">
+                                <li type="button" data-bs-target="#productSlider" data-bs-slide-to="0" class="active bg-primary" aria-current="true" aria-label="Go to slide 1" tabindex="0" aria-controls="productSlider"></li>
+                                <li type="button" data-bs-target="#productSlider" data-bs-slide-to="1" aria-label="Go to slide 2" tabindex="0" aria-controls="productSlider" class="bg-primary"></li>
+                                <li type="button" data-bs-target="#productSlider" data-bs-slide-to="2" aria-label="Go to slide 3" tabindex="0" aria-controls="productSlider" class="bg-primary"></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section class="pb-5 pg-lib-item text-secondary">
                 <div class="container pb-5 pt-5">
                     <?php woocommerce_breadcrumb() ?>
@@ -67,7 +199,7 @@
                                                         <tr>
                                                             <th scope="col" class="text-center py-2"><?php _e( 'Produktbild', 'oe_shop' ); ?></th>
                                                             <th scope="col" class="text-center py-2"><?php _e( 'Produktbeschreibung', 'oe_shop' ); ?></th>
-                                                            <th scope="col" class="text-center py-2"><?php _e( 'Kategorie', 'oe_shop' ); ?></th>
+                                                            <th scope="col" class="text-center py-2"><?php _e( 'Kategorien', 'oe_shop' ); ?></th>
                                                             <th scope="col" class="text-center py-2"><?php _e( 'Preis', 'oe_shop' ); ?></th>
                                                             <th scope="col" class="text-center py-2"><?php _e( 'Aktion', 'oe_shop' ); ?></th>
                                                         </tr>
@@ -129,7 +261,7 @@ function switchView(view) {
             <?php if( !empty( $terms ) && !is_wp_error( $terms ) ) : ?>
                 <section class="bg-light pb-5 pg-lib-item pt-5 text-secondary">
                     <div class="container pb-5 pt-5">
-                        <h1 class="h2 mb-4 text-dark"><?php _e( 'Subcategories', 'oe_shop' ); ?></h1>
+                        <h2 class="mb-4 text-dark"><?php _e( 'Unterkategorien', 'oe_shop' ); ?></h2>
                         <div class="g-md-5 gy-4 justify-content-center row row-cols-lg-3 row-cols-sm-2">
                             <?php foreach( $terms as $term ) : ?>
                                 <div> <a href="<?php echo esc_url( get_term_link( $term, 'product_cat' ) ); ?>" class="d-block link-dark position-relative"><?php ob_start(); woocommerce_subcategory_thumbnail( $term ); $image_html = ob_get_clean(); ?><?php if( $image_html ) : ?><?php 
