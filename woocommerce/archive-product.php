@@ -7,6 +7,38 @@
                             <?php _e( 'Slider pausieren', 'oe_shop' ); ?>
                         </button>
                     </div>
+                    <?php
+                        $slider_query_args = array(
+                            'post_type' => 'product',
+                            'nopaging' => true,
+                            'order' => 'ASC',
+                            'orderby' => 'date',
+                            'tax_query' => array_filter( array(PG_Helper_v2::getTaxonomyQuery( 'product_tag', 'beste' )) )
+                        )
+                    ?>
+                    <?php
+                        $slider_query_args['meta_query'] = WC()->query->get_meta_query(); 
+                        if( isset( $slider_query_args[ 'orderby' ] ) ) {
+                            switch( $slider_query_args[ 'orderby' ] ) {
+                                case 'price':
+                                    $slider_query_args[ 'orderby' ] = 'meta_value_num';
+                                    $slider_query_args[ 'meta_key' ] = '_price';
+                                    break;
+                                case 'rating':
+                                    $slider_query_args[ 'orderby' ] = 'meta_value_num';
+                                    $slider_query_args[ 'meta_key' ] = '_wc_average_rating';
+                                    break;
+                                case 'total_sales':
+                                    $slider_query_args[ 'orderby' ] = 'meta_value_num';
+                                    $slider_query_args[ 'meta_key' ] = 'total_sales';
+                                    break;
+                                case 'review_count':
+                                    $slider_query_args[ 'orderby' ] = 'meta_value_num';
+                                    $slider_query_args[ 'meta_key' ] = '_wc_review_count';
+                                    break;
+                            }
+                    }?>
+                    <?php $slider_query = new WP_Query( $slider_query_args ); ?>
                     <div id="productSlider" class="carousel slide" data-bs-ride="carousel" aria-label="Featured Products" tabindex="0" aria-live="polite" aria-atomic="true" data-bs-interval="5000" data-bs-pause="hover" data-bs-touch="true" data-bs-keyboard="true">
                         <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -41,58 +73,24 @@
         });
       </script>
                         <div class="position-relative">
-                            <?php
-                                $product_query_args = array(
-                                    'post_type' => 'product',
-                                    'nopaging' => true,
-                                    'order' => 'ASC',
-                                    'orderby' => 'date',
-                                    'tax_query' => array_filter( array(PG_Helper_v2::getTaxonomyQuery( 'product_tag', 'beste' )) )
-                                )
-                            ?>
-                            <?php
-                                $product_query_args['meta_query'] = WC()->query->get_meta_query(); 
-                                if( isset( $product_query_args[ 'orderby' ] ) ) {
-                                    switch( $product_query_args[ 'orderby' ] ) {
-                                        case 'price':
-                                            $product_query_args[ 'orderby' ] = 'meta_value_num';
-                                            $product_query_args[ 'meta_key' ] = '_price';
-                                            break;
-                                        case 'rating':
-                                            $product_query_args[ 'orderby' ] = 'meta_value_num';
-                                            $product_query_args[ 'meta_key' ] = '_wc_average_rating';
-                                            break;
-                                        case 'total_sales':
-                                            $product_query_args[ 'orderby' ] = 'meta_value_num';
-                                            $product_query_args[ 'meta_key' ] = 'total_sales';
-                                            break;
-                                        case 'review_count':
-                                            $product_query_args[ 'orderby' ] = 'meta_value_num';
-                                            $product_query_args[ 'meta_key' ] = '_wc_review_count';
-                                            break;
-                                    }
-                            }?>
-                            <?php $product_query = new WP_Query( $product_query_args ); ?>
-                            <?php if ( $product_query->have_posts() ) : ?>
+                            <?php if ( $slider_query->have_posts() ) : ?>
                                 <div class="carousel-inner">
-                                    <?php $product_query_item_number = 0; ?>
-                                    <?php while ( $product_query->have_posts() ) : $product_query->the_post(); ?>
-                                        <?php if( $product_query_item_number == 5 ) : ?>
-                                            <?php global $product, $post; ?>
-                                            <?php PG_Helper_v2::rememberShownPost(); ?>
-                                            <div class="carousel-item<?php if( $product_query_item_number == 0) echo ' active'; ?> <?php echo join( ' ', wc_get_product_class( '', $product ) ) ?>" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3" aria-current="true" id="post-<?php the_ID(); ?>">
-                                                <div class="row align-items-center">
-                                                    <div class="col-md-6 text-center text-md-start">
-                                                        <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/title.php' ); } ); ?>
-                                                        <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/short-description.php' ); } ); ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-1" aria-label="Shop Featured Product 1"><?php _e( 'Shop Now', 'oe_shop' ); ?></a>
-                                                    </div>
-                                                    <div class="col-md-6 d-flex justify-content-center">
-                                                        <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/product-image.php' ); } ); ?>
-                                                    </div>
+                                    <?php $slider_query_item_number = 0; ?>
+                                    <?php while ( $slider_query->have_posts() ) : $slider_query->the_post(); ?>
+                                        <?php global $product, $post; ?>
+                                        <?php PG_Helper_v2::rememberShownPost(); ?>
+                                        <div class="carousel-item<?php if( $slider_query_item_number == 0) echo ' active'; ?> <?php echo join( ' ', wc_get_product_class( '', $product ) ) ?>" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3" aria-current="true" id="post-<?php the_ID(); ?>">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-6 text-center text-md-start">
+                                                    <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/title.php' ); } ); ?>
+                                                    <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/short-description.php' ); } ); ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-1" aria-label="Shop Featured Product 1"><?php _e( 'Shop Now', 'oe_shop' ); ?></a>
+                                                </div>
+                                                <div class="col-md-6 d-flex justify-content-center">
+                                                    <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/product-image.php' ); } ); ?>
                                                 </div>
                                             </div>
-                                        <?php endif; ?>
-                                        <?php $product_query_item_number++; ?>
+                                        </div>
+                                        <?php $slider_query_item_number++; ?>
                                     <?php endwhile; ?>
                                     <?php wp_reset_postdata(); ?>
                                     <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="Slide 2 of 3">
@@ -102,7 +100,7 @@
                                                 <p class="mb-4 fs-6 fs-md-5" id="carousel-desc-2"><?php _e( 'Upgrade your experience with our new arrival. Limited stock available!', 'oe_shop' ); ?></p><a href="#" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-2" aria-label="Shop Featured Product 2"><?php _e( 'Shop Now', 'oe_shop' ); ?></a>
                                             </div>
                                             <div class="col-md-6 d-flex justify-content-center">
-                                                <img src="https://images.unsplash.com/photo-1553456558-aff63285bdd1?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDl8fHByb2R1Y3R8ZW58MHx8fHwxNzQ5MDY2NDAxfDA&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop" class="img-fluid rounded shadow" alt="Featured Product 2: Upgrade your experience with our new arrival. Limited stock available!" style="max-height: 320px;" aria-labelledby="carousel-title-2">
+                                                <img src="https://images.unsplash.com/photo-1553456558-aff63285bdd1?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDl8fHByb2R1Y3R8ZW58MHx8fHwxNzQ5MDY2NDAxfDA&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop" class="img-fluid" alt="Featured Product 2: Upgrade your experience with our new arrival. Limited stock available!" style="max-height: 320px;" aria-labelledby="carousel-title-2">
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +111,7 @@
                                                 <p class="mb-4 fs-6 fs-md-5" id="carousel-desc-3"><?php _e( 'Don’t miss out on this exclusive offer. Shop the best deals now!', 'oe_shop' ); ?></p><a href="#" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-3" aria-label="Shop Featured Product 3"><?php _e( 'Shop Now', 'oe_shop' ); ?></a>
                                             </div>
                                             <div class="col-md-6 d-flex justify-content-center">
-                                                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDE4fHxwcm9kdWN0fGVufDB8fHx8MTc0OTA2NjQwMXww&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop" class="img-fluid rounded shadow" alt="Featured Product 3: Don’t miss out on this exclusive offer. Shop the best deals now!" style="max-height: 320px;" aria-labelledby="carousel-title-3">
+                                                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDE4fHxwcm9kdWN0fGVufDB8fHx8MTc0OTA2NjQwMXww&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&h=800&fit=crop" class="img-fluid" alt="Featured Product 3: Don’t miss out on this exclusive offer. Shop the best deals now!" style="max-height: 320px;" aria-labelledby="carousel-title-3">
                                             </div>
                                         </div>
                                     </div>
