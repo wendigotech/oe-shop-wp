@@ -23,5 +23,5 @@
 'list' => '', 'title' => 'Selected categories'
             ),
             'dynamic' => true,
-            'version' => '1.0.499'
+            'version' => '1.0.500'
         ) );

@@ -85,8 +85,7 @@
                                                     <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/title.php' ); } ); ?>
                                                     <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/short-description.php' ); } ); ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-1" aria-label="Shop Featured Product 1"><?php _e( 'Zum Produkt', 'oe_shop' ); ?></a>
                                                 </div>
-                                                <div class="col-md-6 d-flex justify-content-center">
-                                                    <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/product-image.php' ); } ); ?>
+                                                <div class="col-md-6 d-flex justify-content-center"><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>"><?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/product-image.php' ); } ); ?></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,10 +103,10 @@
                             </ol>
                             <!-- Desktop controls -->
                             <!-- Mobile controls below carousel for accessibility -->
-                            <div class="d-flex gap-3 justify-content-between me-5 ms-5 mt-4 pe-4 ps-4">
-                                <button class="bg-primary btn btn-outline-secondary carousel-control-prev position-static px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="prev" aria-label="Vorheriges Produkt"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Vorheriges', 'oe_shop' ); ?></span>
+                            <div class="d-flex gap-3 justify-content-evenly me-5 ms-5 mt-4 pe-4 ps-4">
+                                <button class="btn btn-primary position-static px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="prev" aria-label="Vorheriges Produkt"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Vorheriges', 'oe_shop' ); ?></span>
                                 </button>
-                                <button class="bg-primary btn btn-outline-secondary carousel-control-next pb-2 pe-3 position-static ps-3 pt-2 px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="next" aria-label="Nächstes Produkt"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Nächstes', 'oe_shop' ); ?></span>
+                                <button class="btn btn-primary pb-2 pe-3 position-static ps-3 pt-2 px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="next" aria-label="Nächstes Produkt"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Nächstes', 'oe_shop' ); ?></span>
                                 </button>
                             </div>
                         </div>
