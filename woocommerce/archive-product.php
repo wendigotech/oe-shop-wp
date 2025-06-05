@@ -96,18 +96,18 @@
                             <?php else : ?>
                                 <p><?php _e( 'Sorry, no posts matched your criteria.', 'oe_shop' ); ?></p>
                             <?php endif; ?>
-                            <ol class="carousel-indicators justify-content-center" aria-label="Slide indicators">
-                                <li type="button" data-bs-target="#productSlider" data-bs-slide-to="0" class="active bg-primary" aria-current="true" aria-label="Go to slide 1" tabindex="0" aria-controls="productSlider"></li>
-                                <li type="button" data-bs-target="#productSlider" data-bs-slide-to="1" aria-label="Go to slide 2" tabindex="0" aria-controls="productSlider" class="bg-primary"></li>
-                                <li type="button" data-bs-target="#productSlider" data-bs-slide-to="2" aria-label="Go to slide 3" tabindex="0" aria-controls="productSlider" class="bg-primary"></li>
-                            </ol>
                             <!-- Desktop controls -->
                             <!-- Mobile controls below carousel for accessibility -->
-                            <div class="d-flex gap-3 justify-content-evenly me-5 ms-5 mt-4 pe-4 ps-4">
-                                <button class="btn btn-primary position-static px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="prev" aria-label="Vorheriges Produkt"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Vorheriges', 'oe_shop' ); ?></span>
+                            <div class="d-flex gap-3 justify-content-between me-5 ms-5 mt-4 pe-4 ps-4">
+                                <button class="btn btn-primary p-1 position-static px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="prev" aria-label="Vorheriges Produkt"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Vorheriges', 'oe_shop' ); ?></span>
                                 </button>
-                                <button class="btn btn-primary pb-2 pe-3 position-static ps-3 pt-2 px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="next" aria-label="Nächstes Produkt"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Nächstes', 'oe_shop' ); ?></span>
+                                <button class="btn btn-primary p-1 position-static px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="next" aria-label="Nächstes Produkt"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Nächstes', 'oe_shop' ); ?></span>
                                 </button>
+                                <ol class="carousel-indicators justify-content-center" aria-label="Slide indicators">
+                                    <li type="button" data-bs-target="#productSlider" data-bs-slide-to="0" class="active bg-primary" aria-current="true" aria-label="Go to slide 1" tabindex="0" aria-controls="productSlider"></li>
+                                    <li type="button" data-bs-target="#productSlider" data-bs-slide-to="1" aria-label="Go to slide 2" tabindex="0" aria-controls="productSlider" class="bg-primary"></li>
+                                    <li type="button" data-bs-target="#productSlider" data-bs-slide-to="2" aria-label="Go to slide 3" tabindex="0" aria-controls="productSlider" class="bg-primary"></li>
+                                </ol>
                             </div>
                         </div>
                     </div>
