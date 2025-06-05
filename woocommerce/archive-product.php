@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
             <section>
-                <div class="container py-5">
+                <div class="container pb-2 pt-2 py-5">
                     <div class="d-flex justify-content-start mb-2">
                         <button type="button" class="btn btn-outline-secondary btn-sm" id="carouselPauseBtn" aria-pressed="false" aria-label="Pause carousel" tabindex="0" aria-controls="productSlider" onclick="var carousel = bootstrap.Carousel.getInstance(document.getElementById('productSlider')); if (this.ariaPressed == 'false') { carousel.pause(); this.ariaPressed = 'true'; this.innerHTML = 'Slider abspielen'; } else { carousel.cycle(); this.ariaPressed = 'false'; this.innerHTML = 'Slider pausieren'; }" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); this.click(); }">
                             <?php _e( 'Slider pausieren', 'oe_shop' ); ?>
@@ -81,7 +81,7 @@
                                         <?php PG_Helper_v2::rememberShownPost(); ?>
                                         <div class="carousel-item<?php if( $slider_query_item_number == 0) echo ' active'; ?> <?php echo join( ' ', wc_get_product_class( '', $product ) ) ?>" role="group" aria-roledescription="slide" aria-label="Slide 1 of 3" aria-current="true" id="post-<?php the_ID(); ?>">
                                             <div class="row align-items-center">
-                                                <div class="col-md-6 text-center text-md-start">
+                                                <div class="col-md-6 ps-5 text-center text-md-start">
                                                     <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/title.php' ); } ); ?>
                                                     <?php PG_WC_Helper::withTemplateVariant( 'slider', function() { wc_get_template( 'loop/short-description.php' ); } ); ?><a href="<?php echo esc_url( apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product ) ); ?>" class="btn btn-primary mb-3 px-4 text-white" aria-describedby="carousel-desc-1" aria-label="Shop Featured Product 1"><?php _e( 'Zum Produkt', 'oe_shop' ); ?></a>
                                                 </div>
@@ -97,13 +97,19 @@
                             <?php else : ?>
                                 <p><?php _e( 'Sorry, no posts matched your criteria.', 'oe_shop' ); ?></p>
                             <?php endif; ?>
-                            <!-- Desktop controls -->
-                            <!-- Mobile controls below carousel for accessibility -->
-                            <ol class="carousel-indicators justify-content-center mb-n4" aria-label="Slide indicators">
+                            <ol class="carousel-indicators justify-content-center" aria-label="Slide indicators">
                                 <li type="button" data-bs-target="#productSlider" data-bs-slide-to="0" class="active bg-primary" aria-current="true" aria-label="Go to slide 1" tabindex="0" aria-controls="productSlider"></li>
                                 <li type="button" data-bs-target="#productSlider" data-bs-slide-to="1" aria-label="Go to slide 2" tabindex="0" aria-controls="productSlider" class="bg-primary"></li>
                                 <li type="button" data-bs-target="#productSlider" data-bs-slide-to="2" aria-label="Go to slide 3" tabindex="0" aria-controls="productSlider" class="bg-primary"></li>
                             </ol>
+                            <!-- Desktop controls -->
+                            <!-- Mobile controls below carousel for accessibility -->
+                            <div class="d-flex gap-3 justify-content-between me-5 ms-5 mt-4 pe-4 ps-4">
+                                <button class="bg-primary btn btn-outline-secondary carousel-control-prev position-static px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="prev" aria-label="Vorheriges Produkt"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Vorheriges', 'oe_shop' ); ?></span>
+                                </button>
+                                <button class="bg-primary btn btn-outline-secondary carousel-control-next pb-2 pe-3 position-static ps-3 pt-2 px-3 py-2" type="button" data-bs-target="#productSlider" data-bs-slide="next" aria-label="Nächstes Produkt"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden"><?php _e( 'Nächstes', 'oe_shop' ); ?></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
